@@ -1,5 +1,6 @@
 // import { Inertia } from '@inertiajs/inertia'; 
 import { useState, useEffect } from 'react';
+import { router } from '@inertiajs/react';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -9,8 +10,14 @@ import { useForm } from '@inertiajs/react';
 
 
 export default function PollConfirmSelection({ voteCounts , totalVotes , totalVoter }) {
+    useEffect(() => {
+        const interval = setInterval(() => {
+            router.reload({ only: ['voteCounts', 'totalVotes', 'totalVoter'] });
+        }, 10000);
+        return () => clearInterval(interval);
+    }, []);
 
- console.log(totalVotes);
+    console.log(totalVotes);
     const { post } = useForm();
 
     return (

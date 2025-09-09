@@ -38,13 +38,13 @@ class PollController extends Controller
 
     public function indexPoll(): Response
     {
-    // dd(Participant::where('id', Auth::guard('participant')->id())->whereNull('poll_completed_at')->exists());
+        // if (Participant::where('id', Auth::guard('participant')->id())->exists()) {
         if (Participant::where('id', Auth::guard('participant')->id())->whereNull('poll_completed_at')->exists()) {
-            $participants = Participant::where('is_candidate','=','1')->get();
+            $candidates = Participant::where('is_candidate','=','1')->get();
             // dd($participants);
             // return Redirect::route('poll.index')->with('participants', $participants);
             return Inertia::render('Poll/PollIndex', [
-                'participants' => $participants,
+                'candidates' => $candidates,
                 'voter' => Auth::guard('participant')->user(),
             ]);
         }
@@ -58,40 +58,36 @@ class PollController extends Controller
 
     public function submitVote(Request $request): RedirectResponse
     {
-        if (Participant::where('id', Auth::guard('participant')->id())->whereNull('poll_completed_at')->exists()) {
+        $data = $request->all();
+        $voterId = $data['voter_id'];
+        $answers = $data['answers'];
 
-        }
-        else {
+        if (Participant::where('id', $voterId)->exists() && Participant::where('id', $voterId)->whereNull('poll_completed_at')->exists()) {
+            try {
+                foreach ($answers as $questionNum => $candidateId) {
+                    Vote::create([
+                        'voter_id' => $voterId,
+                        'candidate_id' => $candidateId,
+                        'question_num' => $questionNum,
+                    ]);
+                }
+                //update has_voted
+                $participant = Participant::find($voterId);
+                $participant->poll_completed_at = date('Y-m-d H:i:s');
+                $participant->save();
+            } catch (\Exception $e) {
+                \Log::error('Database error:', [
+                    'message' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString()
+                ]);
+                return redirect()->back()
+                    ->with('error', 'Failed to save vote')
+                    ->withErrors(['database' => $e->getMessage()]);
+            }
+            return redirect('/poll/finish')->with('success', 'Vote submitted successfully.');
+        } else {
             return Redirect::route('poll.finish');
         }
-        $validated = $request->validate([
-            'voter_id' => 'required|exists:participants,id',
-            'candidate_id' => 'required|exists:participants,id',
-        ]);
-
-        try {
-            // Create the vote
-            Vote::create([
-                'voter_id' => $validated['voter_id'],
-                'candidate_id' => $validated['candidate_id'],
-            ]);
-
-            //update has_voted
-            $participant = Participant::find($validated['voter_id']);
-            $participant->poll_completed_at = date('Y-m-d H:i:s');
-            $participant->save();
-
-        } catch (\Exception $e) {
-            \Log::error('Database error:', [
-                'message' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            return redirect()->back()
-                ->with('error', 'Failed to save vote')
-                ->withErrors(['database' => $e->getMessage()]);
-        }
-
-        return redirect('/poll/finish')->with('success', 'Vote submitted successfully.');
     }
 
     public function finishVote()
@@ -104,8 +100,9 @@ class PollController extends Controller
         $votes = Vote::all();
 
         //number of votes
-        $totalVotes = Vote::all()->count();
+        // $totalVotes = Vote::all()->count();
         $totalVoter = Participant::all()->count();
+        $totalVotes = Participant::whereNotNull('poll_completed_at')->count();
         // dd($votes);
         //calculate number of votes for each candidate, add name of each candidate return in one row
 

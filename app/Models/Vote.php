@@ -30,6 +30,7 @@ class Vote extends Model
     protected $fillable = [
         'voter_id',
         'candidate_id',
+        'question_num',
     ];
 
     // public function participants()
