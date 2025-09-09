@@ -12,7 +12,7 @@ export default function VoterLayout({ header, children }) {
         useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-950">
+        <div className="min-h-screen bg-gray-100">
 
             {header && (
                 <header className="">

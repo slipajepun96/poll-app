@@ -17,7 +17,7 @@ export default function PollIndex({ participants, voter }) {
                         <div className="p-6 text-gray-900">
                             <img src="/img/2394071.png" className='w-48 h-auto' alt="" />
                         </div>
-                        <div className="p-6 text-white text-2xl">
+                        <div className="p-6 text-gray-900 text-2xl">
                             Terima kasih atas penyertaan undi anda dalam<p className="font-bold">Anugerah Pekerja Paling Cemerlang PKPP Agro 2025</p>
                             <div className='text-lg'>
                                 <span className="font-base mt-2">Nantikan keputusan penuh undian di Majlis Makan Malam Hari Keluarga PKPP Agro 2025 nanti!
