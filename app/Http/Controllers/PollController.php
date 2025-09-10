@@ -110,7 +110,8 @@ class PollController extends Controller
             $name = Participant::find($group->first()->candidate_id)->participant_name;
             return [
                 'name' => $name,
-                'count' => $group->count()
+                'count' => $group->count(),
+                'department' => Participant::find($group->first()->candidate_id)->department,
             ];
         })->values()->toArray();
 

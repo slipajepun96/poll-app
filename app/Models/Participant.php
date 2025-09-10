@@ -32,5 +32,6 @@ class Participant extends Authenticatable
         'participant_name',
         'poll_completed_at',
         'is_candidate',
+        'department',
     ];
 }

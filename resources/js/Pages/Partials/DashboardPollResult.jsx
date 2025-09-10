@@ -20,6 +20,13 @@ export default function PollConfirmSelection({ voteCounts , totalVotes , totalVo
     console.log(totalVotes);
     const { post } = useForm();
 
+    // Group voteCounts by department
+    const votesByDepartment = voteCounts.reduce((acc, vote) => {
+        if (!acc[vote.department]) acc[vote.department] = [];
+        acc[vote.department].push(vote);
+        return acc;
+    }, {});
+
     return (
         <div>
             <div className='flex justify-between items-center mb-4'>
@@ -34,14 +41,20 @@ export default function PollConfirmSelection({ voteCounts , totalVotes , totalVo
             </div>
             <p className='font-bold text-lg'>Kedudukan Terkini Undian</p>
 
-            <div className='gap-2 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
-                {voteCounts.map((vote) => (
-                    <div key={vote.id} className='bg-sky-300/50 rounded-xl p-2 py-4'>
-                        <h3 className='text-md font-semibold'>{vote.name}</h3>
-                        <p className='text-gray-600 text-4xl font-bold'>{vote.count} undi</p>
+            {Object.entries(votesByDepartment).map(([department, votes]) => (
+                <div key={department} className="mb-8">
+                    <h2 className="text-xl font-bold mb-2">{department}</h2>
+                    <div className='gap-2 mt-4 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4'>
+                        {votes.map((vote) => (
+                            <div key={vote.id} className='bg-sky-300/50 rounded-xl p-2 py-4'>
+                                <h3 className='text-md font-semibold'>{vote.name}</h3>
+                                <p className='text-gray-600 text-4xl font-bold'>{vote.count} undi</p>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </div>
+                </div>
+            ))}
+            
         </div>
     );
 }
