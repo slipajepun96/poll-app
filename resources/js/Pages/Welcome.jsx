@@ -110,7 +110,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                                 </>
                             )}
                             
-                        | umar qayyum / itpasb 2025
                             {/* Laravel v{laravelVersion} (PHP v{phpVersion}) */}
                         </footer>
                     </div>

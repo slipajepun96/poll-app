@@ -28,7 +28,6 @@ export default function PollIndex({ participants, voter }) {
 
                 </div>
             </div>
-            {/* <p className='text-center text-gray-500'>by umar qayyum / itpasb</p> */}
         </VoterLayout>
     );
 }
