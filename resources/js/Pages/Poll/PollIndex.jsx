@@ -76,18 +76,18 @@ export default function PollIndex({ candidates, voter }) {
 
                         <p>Kriteria pemilihan adalah seperti berikut:</p>
                         <div className='mb-4 flex flex-col md:flex-row gap-2'>
-                            <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
-                                <h1 className='font-bold text-2xl'>Paling Sporting</h1>
-                                <p>Diberikan kepada individu atau pasukan yang menunjukkan semangat kesukanan tinggi, ceria, aktif menyertai semua aktiviti tanpa mengira menang atau kalah, serta positif sepanjang program.</p>
-                            </div>
-                            <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
-                                <h1 className='font-bold text-2xl'>Menyenangkan</h1>
-                                <p>Diberikan kepada individu yang mudah bekerjasama, tidak banyak kerenah, ramah, mesra, serta disukai oleh majoriti kerana sifatnya yang tenang dan memudahkan urusan.</p>
-                            </div>
-                            <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
-                                <h1 className='font-bold text-2xl'>Serba Boleh</h1>
-                                <p>Diberikan kepada individu yang berbakat dalam pelbagai bidang, contohnya mampu menyanyi, bersukan, berpidato, mengurus dan bergaul. Orang ini sering menonjol dalam pelbagai aktiviti dan boleh diharap dalam pelbagai situasi.</p>
-                            </div>
+                               <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
+                                    <h1 className='font-bold text-2xl'>Paling Sporting</h1>
+                                    <p>Diberikan kepada individu yang bersemangat, ceria, aktif menyertai semua aktiviti tanpa mengira menang atau kalah, serta membawa aura dan berfikiran positif.</p>
+                                </div>
+                                <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
+                                    <h1 className='font-bold text-2xl'>Menyenangkan</h1>
+                                    <p>Diberikan kepada individu yang mudah bekerjasama, tidak banyak kerenah, ramah, mesra, serta disukai oleh majoriti kerana sifatnya yang tenang dan memudahkan urusan.</p>
+                                </div>
+                                <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
+                                    <h1 className='font-bold text-2xl'>Serba Boleh</h1>
+                                    <p>Diberikan kepada individu yang berbakat dalam pelbagai bidang, contohnya mampu menyanyi, bersukan, mengurus dan bergaul. Orang ini sering menonjol dalam pelbagai aktiviti dan boleh diharap dalam pelbagai situasi.</p>
+                                </div>
                         </div>
                         <p className="mb-2 text-gray-900 font-bold uppercase underline">Sila baca maklumat di bawah sebelum memulakan undian anda.</p>
                         <p className="mb-2 text-gray-900">1. Anda akan mengundi 1 nama bagi setiap bahagian/ladang.</p>
@@ -128,7 +128,7 @@ export default function PollIndex({ candidates, voter }) {
                             <div className='mb-4 flex flex-col md:flex-row gap-2'>
                                 <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
                                     <h1 className='font-bold text-2xl'>Paling Sporting</h1>
-                                    <p>Diberikan kepada individu atau pasukan yang menunjukkan semangat kesukanan tinggi, ceria, aktif menyertai semua aktiviti tanpa mengira menang atau kalah, serta positif sepanjang program.</p>
+                                    <p>Diberikan kepada individu yang menunjukkan semangat tinggi, ceria, aktif menyertai semua aktiviti tanpa mengira menang atau kalah, serta membawa aura dan berfikiran positif.</p>
                                 </div>
                                 <div className='mb-4 bg-green-200 p-4 rounded-xl max-w-lg'>
                                     <h1 className='font-bold text-2xl'>Menyenangkan</h1>

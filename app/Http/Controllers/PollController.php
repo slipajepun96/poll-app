@@ -66,7 +66,7 @@ class PollController extends Controller
             try {
                 foreach ($answers as $questionNum => $candidateId) {
                     Vote::create([
-                        'voter_id' => $voterId,
+                        // 'voter_id' => $voterId,
                         'candidate_id' => $candidateId,
                         'question_num' => $questionNum,
                     ]);
